@@ -6,17 +6,15 @@ public class BankAccount {
     private double balance;
 
     public BankAccount(String accNo, String name, double balance) {
-        if(balance <= 0) {
-            throw new IllegalArgumentException("Balance must be greater than 0.");
+        if (balance <= 0) {
+            throw new IllegalArgumentException("Balance must be greater than 0");
         }
         this.accNo = accNo;
         this.name = name;
         this.balance = balance;
     }
 
-    public BankAccount() {
-
-    }
+    public BankAccount() {}
 
     public String getAccNo() {
         return accNo;
@@ -29,4 +27,22 @@ public class BankAccount {
     public double getBalance() {
         return balance;
     }
+
+    public void deposit(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Deposit amount must be positive");
+        }
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Withdrawal amount must be positive");
+        }
+        if (amount > balance) {
+            throw new IllegalArgumentException("Insufficient funds");
+        }
+        balance -= amount;
+    }
 }
+
